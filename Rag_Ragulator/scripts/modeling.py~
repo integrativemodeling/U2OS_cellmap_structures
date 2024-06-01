@@ -1,0 +1,175 @@
+'''
+Script for integrative modeling of cluster2_46 of MuSIC2
+using a topology file
+'''
+# Imports
+from __future__ import print_function
+import IMP
+import IMP.atom
+import IMP.core
+import IMP.rmf
+import IMP.pmi
+import IMP.pmi.io
+import IMP.pmi.topology
+import IMP.pmi.macros
+import IMP.pmi.restraints
+import IMP.pmi.restraints.stereochemistry
+import IMP.pmi.dof
+import ihm.cross_linkers
+
+#import IMP.pmi.restraints.RestraintBase
+
+import IMP.bbm
+#import IMP.bbm.util as util
+import IMP.bbm.restraints
+
+import os
+import sys
+
+test_mode = False
+if '--test' in sys.argv:
+    test_mode = True
+    
+num_frames = 60000 #1000
+num_mc_steps = 10 #20
+
+## Define Input Files  ####
+
+
+top_dir = "/wynton/home/sali/ignacia/CCMI/RAG_Ragulator/modeling/" 
+datadirectory= f"{top_dir}/data/"
+
+# Topology File
+topology_file = f"{top_dir}/topology4_final_v2.txt"
+
+
+# Initialize model
+m=IMP.Model()
+
+#Read in the topology file
+topology= IMP.pmi.topology.TopologyReader(topology_file,
+                                          pdb_dir = f'{top_dir}/data/pdb',
+                                          fasta_dir = f'{top_dir}/data/fasta')
+
+# Use the BuildSystem macro to build states from the topology file
+bs = IMP.pmi.macros.BuildSystem(m,resolutions=[1, 5])
+
+#Each state can be specified by a topology file
+bs.add_state(topology)
+
+#Building the System Representation and Degrees of Freedom
+
+#root_hier, dof = bs.execute_macro(max_rb_trans=4.0,max_rb_rot=0.3,max_bead_trans=4.0,max_srb_trans=4.0,max_srb_rot=0.3)
+
+#Building the system with default rotation and translation parameters
+root_hier, dof = bs.execute_macro()
+                                  
+#Setting up restraints
+
+outputobjects = []
+
+# Connectivity keeps things connected along the backbone (ignores if inside
+# same rigid body)
+mols=[]
+crs=[]
+moldict = bs.get_molecules()[0]
+
+for molname in moldict:
+    for mol in moldict[molname]:
+        cr = IMP.pmi.restraints.stereochemistry.ConnectivityRestraint(mol)
+        cr.add_to_model()
+        outputobjects.append(cr)
+        crs.append(cr)
+        mols.append(mol)
+
+    
+#Excluded volume restraints
+ev = IMP.pmi.restraints.stereochemistry.ExcludedVolumeSphere(
+                                         included_objects=root_hier,
+                                         resolution=5)
+ev.add_to_model()
+outputobjects.append(ev)
+
+#External Barrier Restraints
+#ex_barrier = IMP.pmi.restraints.RestraintBase.ExternalBarrier(root_hier,radius=)
+#ex_barrier.add_to_model()
+#outputobjects.append(ex_barrier)
+
+#AlphaFold Restraints
+
+params_199_228 = IMP.bbm.restraints.GaussianVMFMixtureParameters.from_file('/wynton/home/sali/ignacia/CCMI/RAG_Ragulator/AF2/BORCS6_C_Terminus_LAMTOR2_Q9Y2Q5/param/param_A_199_217_params.pkl')
+prb1 = IMP.bbm.restraints.GaussianVMFMixturePairRestraint(root_hier,
+                                                         subunits = ((199,217,'BORCS6',0), 'Lamtor2'),
+                                                         label='BORCS6_199_217',
+                                                         params=params_199_228)
+prb1.add_to_model()
+prb1.set_weight(1.0)
+outputobjects.append(prb1)
+
+
+
+params_258_295 = IMP.bbm.restraints.GaussianVMFMixtureParameters.from_file('/wynton/home/sali/ignacia/CCMI/RAG_Ragulator/AF2/BORCS6_C_Terminus_LAMTOR2_Q9Y2Q5/param/param_A_258_295_params.pkl')
+prb2 = IMP.bbm.restraints.GaussianVMFMixturePairRestraint(root_hier,
+                                                         subunits = ((258,295,'BORCS6',0), 'Lamtor2'),
+                                                         label='BORCS6_258_295',
+                                                         params=params_258_295)
+prb2.add_to_model()
+prb2.set_weight(1.0)
+outputobjects.append(prb2)
+
+params_319_355 = IMP.bbm.restraints.GaussianVMFMixtureParameters.from_file('/wynton/home/sali/ignacia/CCMI/RAG_Ragulator/AF2/BORCS6_C_Terminus_LAMTOR2_Q9Y2Q5/param/param_A_319_355_params.pkl')
+prb3 = IMP.bbm.restraints.GaussianVMFMixturePairRestraint(root_hier,
+                                                         subunits = ((319,355,'BORCS6',0), (258,295,'BORCS6',0)),
+                                                         label='BORCS6_319_355',
+                                                         params=params_319_355)
+prb3.add_to_model()
+prb3.set_weight(1.0)
+outputobjects.append(prb3)
+
+params_ITPA = IMP.bbm.restraints.GaussianVMFMixtureParameters.from_file('/wynton/home/sali/ignacia/CCMI/RAG_Ragulator/AF2/ITPA_LAMTOR5_6WJ2_E/param/param_ITPA_params.pkl')
+prb4 = IMP.bbm.restraints.GaussianVMFMixturePairRestraint(root_hier,
+                                                         subunits = ('ITPA', 'Lamtor5'),
+                                                         label='ITPA',
+                                                         params=params_ITPA)
+prb4.add_to_model()
+prb4.set_weight(1.0)
+outputobjects.append(prb4)
+
+
+#folder_name=sys.argv[1]+ "/output/"
+#ini_file_name=folder_name + "ini_ranked_0.rmf3"
+
+# Save ref rmf 
+output = IMP.pmi.output.Output()
+output.init_rmf(f"ini_ranked_0.rmf3", [root_hier])
+output.write_rmf(f"ini_ranked_0.rmf3")
+output.close_rmf(f"ini_ranked_0.rmf3")
+
+
+#####################################################
+#                      SAMPLING                     #
+#####################################################
+
+# First shuffle all particles to randomize the starting point of the
+# system. For larger systems, you may want to increase max_translation
+IMP.pmi.tools.shuffle_configuration(root_hier)
+
+# Shuffling randomizes the bead positions. It's good to
+# allow these to optimize first to relax large connectivity
+# restraint scores.  100-500 steps is generally sufficient.
+dof.optimize_flexible_beads(100)
+
+#--------------------------
+# Set MC Sampling Parameters
+#---------------------------
+
+mc1=IMP.pmi.macros.ReplicaExchange(m,
+                                   root_hier=root_hier,
+                                   monte_carlo_sample_objects=dof.get_movers(),
+                                   output_objects=outputobjects,
+                                   number_of_best_scoring_models=0,
+                                   monte_carlo_steps=num_mc_steps,
+                                   number_of_frames=num_frames,
+                                   global_output_directory="output/")
+                                   
+mc1.execute_macro()

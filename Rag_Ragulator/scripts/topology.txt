@@ -1,0 +1,27 @@
+|directories|
+|pdb_dir|../data/pdb/|
+|fasta_dir|../data/fasta/|
+
+|molecule_name | color | fasta_fn | fasta_id | pdb_fn | chain | residue_range | pdb_offset | bead_size | em_residues_per_gaussian | rigid_body | super_rigid_body | chain_of_super_rigid_bodies |
+|Lamtor1   |green     |cluster2_46_BORCS6_C_terminus.fasta.txt|Lamtor1 |RRAGB.B99990008.pdb        |A|49,68    |0    |1||1|||
+|Lamtor1   |green     |cluster2_46_BORCS6_C_terminus.fasta.txt|Lamtor1 |BEADS                      | |69,82    |0    |1|| |||
+|Lamtor1   |green     |cluster2_46_BORCS6_C_terminus.fasta.txt|Lamtor1 |RRAGB.B99990008.pdb        |A|83,146   |0    |1||1|||
+|Lamtor1   |green     |cluster2_46_BORCS6_C_terminus.fasta.txt|Lamtor1 |BEADS                      | |147,158  |0    |1|| ||| 
+|Lamtor2   |yellow    |cluster2_46_BORCS6_C_terminus.fasta.txt|Lamtor2 |BEADS                      |B|1,4      |0    |1|| |||
+|Lamtor2   |yellow    |cluster2_46_BORCS6_C_terminus.fasta.txt|Lamtor2 |RRAGB.B99990008.pdb        |B|5,125    |0    |1||1|||
+|Lamtor3   |pink      |cluster2_46_BORCS6_C_terminus.fasta.txt|Lamtor3 |RRAGB.B99990008.pdb        |C|1,124    |0    |1||1|||
+|Lamtor4   |red       |cluster2_46_BORCS6_C_terminus.fasta.txt|Lamtor4 |RRAGB.B99990008.pdb        |D|1,99     |0    |1||1|||
+|Lamtor5   |blue      |cluster2_46_BORCS6_C_terminus.fasta.txt|Lamtor5 |RRAGB.B99990008.pdb        |E|1,91     |0    |1||1|||
+|RRAGB     |cyan      |cluster2_46_BORCS6_C_terminus.fasta.txt|RRAGB   |RRAGB.B99990008.pdb        |F|1,337    |0    |1||1|||
+|RRAGB     |cyan      |cluster2_46_BORCS6_C_terminus.fasta.txt|RRAGB   |BEADS                      | |338,343  |0    |1|| |||
+|RRAGB     |cyan      |cluster2_46_BORCS6_C_terminus.fasta.txt|RRAGB   |RRAGB.B99990008.pdb        |F|344,374  |0    |1||1|||
+|RRAGC     |orange    |cluster2_46_BORCS6_C_terminus.fasta.txt|RRAGC   |RRAGB.B99990008.pdb        |G|62,369   |0    |1||1|||
+|SLC38A9   |brown     |cluster2_46_BORCS6_C_terminus.fasta.txt|SLC38A9 |RRAGB.B99990008.pdb        |H|39,96    |0    |1||1|||
+|BORCS6    |purple    |cluster2_46_BORCS6_C_terminus.fasta.txt|BORCS6  |AF-Q96GS4-F1-model_v4.pdb  |A|199,216  |0    |1||2|||
+|BORCS6    |purple    |cluster2_46_BORCS6_C_terminus.fasta.txt|BORCS6  |BEADS                      || 217,220  |0    |1|| |||
+|BORCS6    |purple    |cluster2_46_BORCS6_C_terminus.fasta.txt|BORCS6  |AF-Q96GS4-F1-model_v4.pdb  |A|221,228  |0    |1||3|||
+|BORCS6    |purple    |cluster2_46_BORCS6_C_terminus.fasta.txt|BORCS6  |BEADS                      || 229,257  |0    |1|| |||
+|BORCS6    |purple    |cluster2_46_BORCS6_C_terminus.fasta.txt|BORCS6  |AF-Q96GS4-F1-model_v4.pdb  |A|258,295  |0    |1||4|||
+|BORCS6    |purple    |cluster2_46_BORCS6_C_terminus.fasta.txt|BORCS6  |BEADS                      || 296,318  |0    |1|| |||
+|BORCS6    |purple    |cluster2_46_BORCS6_C_terminus.fasta.txt|BORCS6  |AF-Q96GS4-F1-model_v4.pdb  |A|319,355  |0    |1||5|||
+|ITPA      |gray      |cluster2_46_BORCS6_C_terminus.fasta.txt|ITPA    |2CAR_A_final.pdb           |A|1,194    |0    |1||6|||

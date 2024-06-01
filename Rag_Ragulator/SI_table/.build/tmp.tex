@@ -1,0 +1,129 @@
+\documentclass[11pt,a4paper]{article} 
+\usepackage{tabularx}
+\usepackage{caption}
+\usepackage{longtable}
+\usepackage{pdflscape}
+\usepackage[margin=0.2in]{geometry}
+\fontfamily{phv}\fontseries{mc}\selectfont
+\begin{document}
+
+\setcounter{table}{0}
+
+\begin{landscape}
+\begin{longtable}{ p{.48\textwidth} | p{.48\textwidth} } 
+\caption{Summary of the RAG-Ragular MuSIC system integrative modeling}
+  
+  &  \\
+  \textbf{1) Gathering information} & \\
+    \hline
+
+                \textit{Physical principles and statistical preferences} & Excluded volume\\
+            & Sequence connectivity \\
+                \textit{Input information} & Atomic structure prediction from Alphafold2 (AF\_Q96GS4, AF\_Q9BY32)\\
+            & Comparative model of the SLC38A9-RagA-RagB-Ragulator complex (template PDB ID 6WJ2) \\
+          
+    &  \\
+    \normalsize{\textbf{2) Representing the system}} & \\
+    \hline
+    
+            \textit{Composition (number of copies)} & BORCS6: 1\\
+            & ITPA: 1 \\
+            & Lamtor1: 1 \\
+            & Lamtor2: 1 \\
+            & Lamtor3: 1 \\
+            & Lamtor4: 1 \\
+            & Lamtor5: 1 \\
+            & RRAGB: 1 \\
+            & RRAGC: 1 \\
+            & SLC38A9: 1 \\
+                \textit{Atomic (structured) components} & BORCS6: 199-216, 221-228, 258-295, 319-355\\
+            & ITPA: 1-194 \\
+            & Lamtor1: 49-68, 83-146 \\
+            & Lamtor2: 5-125 \\
+            & Lamtor3: 1-124 \\
+            & Lamtor4: 1-99 \\
+            & Lamtor5: 1-91 \\
+            & RRAGB: 1-337, 344-374 \\
+            & RRAGC: 62-369 \\
+            & SLC38A9: 39-78, 80-96 \\
+                \textit{Unstructured components} & BORCS6: 217-220, 229-257, 296-318\\
+            & Lamtor1: 69-82, 147-158 \\
+            & Lamtor2: 1-4 \\
+            & RRAGB: 338-343 \\
+            & SLC38A9: 79-79 \\
+                \textit{Resolution of structured components} & 1 [R1] residue per bead\\
+                \textit{Resolution of unstructured components} & None\\
+                \textit{Structural coverage} & 94.74 \%\\
+                \textit{Rigid body (RB) definitions} & RB1: Lamtor1$_{49-68}$,Lamtor1$_{83-146}$,Lamtor2$_{5-125}$,Lamtor3$_{1-124}$,Lamtor4$_{1-99}$, 
+ Lamtor5$_{1-91}$,RRAGB$_{1-337}$,RRAGB$_{344-374}$,RRAGC$_{62-369}$,SLC38A9$_{39-78}$, 
+ SLC38A9$_{80-96}$\\
+            & RB2: BORCS6$_{199-216}$ \\
+            & RB3: BORCS6$_{221-228}$ \\
+            & RB4: BORCS6$_{258-295}$ \\
+            & RB5: BORCS6$_{319-355}$ \\
+            & RB6: ITPA$_{1-194}$ \\
+                \textit{Resolution of disordered regions} & 1 [R1] residues per bead\\
+                \textit{Spatial restraints encoded into scoring function} & Excluded volume; applied to the R1 representation\\
+            & Sequence connectivity; applied to the R1 representation \\
+            & Bayesian binary binding Mode restraint \\
+          
+   &  \\
+    \normalsize{\textbf{3) Structural Sampling}} & \\
+    \hline
+            \textit{Sampling method} & Replica Exchange Gibbs sampling, based on Metropolis Monte Carlo\\
+                \textit{Replica exchange temperature range} & 1.0 - 4.0\\
+                \textit{Number of replicas} & 4\\
+                \textit{Number of runs} & 60\\
+                \textit{Number of structures generated} & 3000000\\
+                \textit{Movers for flexible string of bead} & Random translation up to 4.0 \AA\\
+                \textit{CPU time} & 5 hours on 80 processors\\
+        
+   &  \\
+
+  \normalsize{\textbf{4) Validating models}} & \\
+    \hline
+   \textbf{Models selected for validation} & \\
+    \hline
+          \textit{Number of models after equilibration} & 3000000\\
+                \textit{Number of models that satisfy the input information} & 10000\\
+                \textit{Number of structures in samples A/B} & 4619/5381\\
+                \textit{p-value of non-parametric Kolmogorov-Smirnov two-sample test} & 0.063 (threshold p-value $>$ 0.05)\\
+                \textit{Kolmogorov-Smirnov two-sample test statistic, D} & 1.0\\
+           \hline
+    
+    \textbf{Thoroughness of the structural sampling} & \\
+    \hline
+          \textit{Sampling precision} & 15.18 \AA \\
+                \textit{Homogeneity of proportions $\chi^2$ test (p-value)/Cramer’s V value} & 0.000/0.086 (thresholds: p-value$>$0.05 OR Cramer's V$<$0.1)\\
+                \textit{Number of clusters} & 1\\
+                \textit{Cluster populations} & cluster 1 : 97.2 $\%$\\
+                \textit{Cluster precisions} & cluster 1 : 9.96 \AA\\
+                \textit{Average cross-correlation between localization probability densities of samples A and B} & cluster 1: 0.98\\
+           \hline
+  
+  \textbf{Validation by information used for modeling} & \\
+  \hline
+          \textit{Percent of sequence connectivity restraints satisfied per structure} & 99 \%\\
+                \textit{Percent of excluded volume restraints satisfied per structure} & 99 \%\\
+          &  \\
+  
+   &  \\
+  \normalsize{\textbf{5) Software and data availability}} & \\
+    \hline
+   \textbf{Software} & \\
+   \hline
+             \textit{Modeling programs} & IMP PMI module, version 2.19.0\\
+             & Integrative Modeling Platform (IMP), version 2.19.0 \\
+             & MODELLER, version SVN \\
+                  \textit{Modeling scripts} & https://github.com/integrativemodeling/IM\_MuSIC\\
+                  \textit{Structure prediction} & AlphaFold2\\
+             & AlphaFold-Multimer \\
+                  \textit{Visualization and plotting} & UCSF Chimera\\
+          \hline
+
+  
+\end{longtable}
+\end{landscape}
+
+
+\end{document}

@@ -1,0 +1,19 @@
+Getting top scoring models at subsets of size: [1000, 2000, 3000, 4000, 5000, 6000, 7000, 8000, 9000, 10000]
+Opening RMF file: A_models_clust1_0.rmf3 with 4619 frames
+Opening RMF file: B_models_clust1_0.rmf3 with 5381 frames
+Size of conformation matrix (10000, 1640, 3)
+we are using QCP_OMP to compute RMSD
+Size of RMSD matrix (flattened): (49995000,)
+Loading matrix data from Distances_Matrix.data.bin ...  Done
+Size of RMSD matrix (unpacked, N x N): (10000, 10000)
+Size of Sample A: 4619  ; Size of Sample B:  5381 ; Total 10000
+Calculating sampling precision
+Minimum and maximum pairwise model distances: 1.1778501 34.139645
+Clustering at thresholds: [ 3.17785013  5.17785013  7.17785013  9.17785013 11.17785013 13.17785013
+ 15.17785013 17.17785013 19.17785013 21.17785013 23.17785013 25.17785013
+ 27.17785013 29.17785013 31.17785013 33.17785013]
+Clustering at threshold 15.178
+Contingency table: [[4458. 5197.]
+ [  23.  151.]]
+../B_models_clust1_0.rmf3 cluster.0/cluster_center_model.rmf3
+../B_models_clust1_0.rmf3 cluster.1/cluster_center_model.rmf3

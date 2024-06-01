@@ -1,0 +1,1 @@
+density_custom_ranges={"Lamtor1":["Lamtor1"],"Lamtor2":["Lamtor2"],"Lamtor3":["Lamtor3"],"Lamtor4":["Lamtor4"],"Lamtor5":["Lamtor5"],"RRAGB":["RRAGB"],"RRAGC":["RRAGC"],"SLC38A9":["SLC38A9"],"BORCS6":["BORCS6"],"ITPA":["ITPA"]}

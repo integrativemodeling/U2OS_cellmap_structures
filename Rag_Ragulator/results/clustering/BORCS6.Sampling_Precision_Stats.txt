@@ -1,0 +1,4 @@
+The sampling precision is defined as the largest allowed RMSD between the cluster centroid and a  BORCS6 model within any cluster in the finest clustering for which each sample contributes models proportionally to its size (considering both significance and magnitude of the difference) and for which a sufficient proportion of all models occur in sufficiently large clusters. The sampling precision for our  BORCS6  modeling is 15.178  A.
+Sampling precision, P-value, Cramer's V and percentage of clustered models below:
+15.178	0.000	0.086	98.290
+
